@@ -55,7 +55,7 @@ The table below shows the top 10 results sorted by **Accuracy**. The best perfor
 
 ### 3. Decoder-Only Approach (Generative LLM)
 * **Architecture:** Autoregressive Transformer (Decoder).
-* **Model:** `Qwen2.5-1.5B-Instruct` / `Mistral-7B`.
+* **Model:** `Qwen2.5-1.5B-Instruct`.
 * **Techniques:**
     * **Few-Shot Prompting:** Evaluating in-context learning capabilities (0-shot vs 3-shot).
     * **QLoRA:** Efficient fine-tuning using 4-bit quantization and Low-Rank Adapters.
@@ -66,6 +66,18 @@ The table below shows the top 10 results sorted by **Accuracy**. The best perfor
 ## 📊 Visualization (Embeddings)
 To interpret how models distinguish between Real and Fake news, we extracted the last-layer embeddings and visualized them using **UMAP**.
 * **Observation:** Distinct clusters for "Real" and "Fake" classes indicate that the models successfully learned semantic features distinguishing truth from misinformation.
+
+Validation Set UMAP visualization (TF-IDF features):
+
+<img src="figures/viz_val_tfidf.png" alt="UMAP Visualization" width="300"/>
+
+Validation Set UMAP visualization (DistilBERT embeddings):
+
+<img src="figures/viz_val_bert.png" alt="UMAP Visualization" width="300"/>
+
+Validation Set UMAP visualization (Qwen LLM embeddings):
+
+<img src="figures/viz_val_qwen.png" alt="UMAP Visualization" width="300"/>
 
 ## 🗝️ Key Findings
 1. **Strong Baseline:** Classical **TF-IDF** performed exceptionally well, suggesting that fake news in this dataset is strongly characterized by specific keywords (e.g., clickbait vocabulary).
