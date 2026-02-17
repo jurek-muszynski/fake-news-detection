@@ -12,6 +12,12 @@ The project is divided into three distinct stages, exploring the evolution of NL
 * **Source:** [HuggingFace: ErfanMoosaviMonazzah/fake-news-detection-dataset-English](https://huggingface.co/datasets/ErfanMoosaviMonazzah/fake-news-detection-dataset-English)
 * **Size:** ~44k balanced samples.
 * **Preprocessing:** Concatenation of `title` and `text` to capture sensationalist headlines often found in fake news.
+* **Split:**
+    | Subset | Purpose | Number of samples |
+    | :--- | :--- | :--- |
+    | Train | Model training | 30,000 |
+    | Validation | Hyperparameter tuning | 6,000 |
+    | Test | Final evaluation | 8,267 |
 
 ---
 
@@ -80,9 +86,19 @@ Validation Set UMAP visualization (Qwen LLM embeddings):
 <img src="figures/viz_val_qwen.png" alt="UMAP Visualization" width="300"/>
 
 ## 🗝️ Key Findings
+
+Final evaluation metrics on the test set:
+| Method | Model | Accuracy | F1-Score |
+| :--- | :--- | :--- | :--- |
+| TF-IDF + Logistic Regression | Statistic | 0.982 | 0.981 |
+| **Encoder-Only** | **DistilBERT (Transformer Architecture)** | **0.999** | **0.999** |
+| Decoder-Only (LLM) | Qwen2.5-1.5B-Instruct (Transformer Architecture) | 0.873 | 0.873 |
+
+
 1. **Strong Baseline:** Classical **TF-IDF** performed exceptionally well, suggesting that fake news in this dataset is strongly characterized by specific keywords (e.g., clickbait vocabulary).
 2. **Encoder Efficiency:** **DistilBERT** offered an excellent balance between performance and speed, serving as a reliable production-ready solution.
 3. **LLM Complexity:** While **LLMs** (Decoder-only) offer general knowledge, for this specific binary classification task, they required significant resources (VRAM) without drastically outperforming the simpler, fully fine-tuned Encoder models.
+
 
 ## 🛠️ Technologies Used
 * **Python 3.10+**
